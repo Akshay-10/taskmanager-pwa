@@ -1,9 +1,10 @@
 import React from "react";
-import Container from "../../components/Container/Container";
-import webBg from "../../assets/images/image/background/web_bg.png";
-import ButtonWithIcon from "../../components/Base/Button/ButtonWithIcon";
-import mobileBg from "../../assets/images/image/background/mobile_bg.png";
-import { Router, useNavigate } from "react-router-dom";
+
+import webBg from "../../../shared/asserts/images/image/background/web_bg.png";
+import mobileBg from "../../../shared/asserts/images/image/background/mobile_bg.png";
+import { useNavigate } from "react-router-dom";
+import Container from "../../components/container/Container";
+import ButtonWithIcon from "../../components/base/ButtonWithIcon";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Login = () => {
 
   return (
     <Container>
-      <div className="flex w-full h-screen relative">
+      <div className="grid grid-cols-12 w-full h-screen relative">
         <picture className="absolute top-0 left-0 w-full h-full">
           {/* Web background for larger screens */}
           <source media="(min-width: 768px)" srcSet={webBg} />
@@ -27,14 +28,15 @@ const Login = () => {
             className="object-cover w-full h-full"
           />
         </picture>
-        <div className="relative z-10 flex w-full h-full items-center sm:justify-center lg:justify-start md:justify-start lg:ml-[10%] px-6">
-          <div className="flex flex-col gap-4 w-full sm:w-[300px]">
-            <p className="text-[#7B1984] font-bold text-[26px]">TaskBuddy</p>
-            <p className="text-gray-700">
+        <div className="md:block hidden"></div>
+        <div className="relative md:col-span-5 lg:col-span-4 col-span-12 z-10 flex w-full h-full items-center justify-center px-8">
+          <div className="flex flex-col gap-4 w-full items-center">
+            <p className="text-[#7B1984] font-bold text-[26px] ">TaskBuddy</p>
+            <p className="text-gray-700 text-center sm:text-start">
               Streamline your workflow and track progress effortlessly with our
               all-in-one task management app.
             </p>
-            <div className="mt-6">
+            <div className="w-full">
               <ButtonWithIcon
                 onClick={() => navigate("home")}
                 title="Continue with Google"
