@@ -1,11 +1,14 @@
 import React from "react";
 import Container from "../../components/container/Container";
+import HomeHeader from "../../components/base/header/HomeHeader";
 
 const Home = () => {
   return (
     <Container>
-      <div className="Home">
-        <h1 className="text-3xl font-bold underline">Home</h1>
+      <div className="Home grid grid-cols-12 w-full">
+        <div className="flex w-full items-start justify-between col-span-12">
+            <HomeHeader />
+       </div>
       </div>
     </Container>
   );

@@ -4,7 +4,7 @@ import webBg from "../../../shared/asserts/images/image/background/web_bg.png";
 import mobileBg from "../../../shared/asserts/images/image/background/mobile_bg.png";
 import { useNavigate } from "react-router-dom";
 import Container from "../../components/container/Container";
-import ButtonWithIcon from "../../components/base/ButtonWithIcon";
+import ButtonWithIcon from "../../components/base/button/ButtonWithIcon";
 
 const Login = () => {
   const navigate = useNavigate();
