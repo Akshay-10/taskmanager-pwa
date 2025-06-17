@@ -1,14 +1,38 @@
-import React, { createContext, useState } from 'react';
-import { darkTheme, lightTheme } from './darkTheme';
+import React, { createContext, useState,useContext } from 'react';
+import { darkTheme } from './darkTheme';
+import {lightTheme} from './lightTheme'
+import PropTypes from 'prop-types';
 
 export const ThemeContext = createContext();
 
+export const THEMES = {
+  LIGHT: 'light',
+  DARK: 'dark'
+};
+
+
+ThemeProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  initialTheme: PropTypes.oneOf(['light', 'dark'])
+};
+
 export const ThemeProvider = ({ children, initialTheme }) => {
-  const [theme, setTheme] = useState(initialTheme || 'light');
-  const themeStyles = theme === 'light' ? lightTheme : darkTheme;
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme || initialTheme || THEMES.LIGHT;
+  });
+
+  const themeStyles = useMemo(() => 
+    theme === THEMES.LIGHT ? lightTheme : darkTheme,
+    [theme]
+  );
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      return newTheme;
+    });
   };
 
   return (
@@ -19,6 +43,9 @@ export const ThemeProvider = ({ children, initialTheme }) => {
 };
 
 export const useThemeContext = () => {
-    const { theme, themeStyles,toggleTheme } = useContext(ThemeContext)
-    return { theme, themeStyles,toggleTheme }
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error('useThemeContext must be used within a ThemeProvider');
   }
+  return context;
+};

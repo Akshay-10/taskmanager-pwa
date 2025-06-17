@@ -13,7 +13,7 @@ const root = createRoot(container); // Create a React root.
 root.render(
   <React.StrictMode>
     <ThemeProvider initialTheme="light">
-    <div className="flex h-[100vh] w-full">
+    <div className="flex h-[100dvh] w-full">
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
